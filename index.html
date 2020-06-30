@@ -1,30 +1,41 @@
 <!doctype html>
-<html lang="en" ng-app="NarrowItDownApp">
-
-<head>
+<html ng-app='NarrowItDownApp' lang="en">
+  <head>
     <title>Narrow Down Your Menu Choice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="angular.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <script src="angular.min.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="styles/styles.css">
-</head>
-
+  </head>
 <body>
-    <div class="container">
-        <h1>Narrow Down Your Chinese Menu Choice</h1
-        <div ng-controller="NarrowItDownController as narrowIt">
-            <div class="form-group">
-                <input type="text" placeholder="search term" class="form-control" ng-model="narrowIt.search">
-            </div>
-            <div class="form-group narrow-button">
-                <button class="btn btn-primary" ng-click="narrowIt.narrowItDown();">Narrow It Down For Me!</button>
-            </div>
-            <div class="clearfix"></div>
-            <found-items items="narrowIt.found" on-remove="narrowIt.removeItem(i)"></found-items>
+
+  <div ng-controller="NarrowItDownController as narrowCtrl">
+
+    <div>
+      <div>
+
+        <div>
+          <h2>Narrow Down Your Chinese Menu Choice</h2>
         </div>
+        <div>
+        <form ng-submit="narrowCtrl.searchMenuItems()">
+            <div class="input mdl-textfield mdl-js-textfield">
+              <input ng-model="narrowCtrl.searchTerm" type="text" id="keyword">
+            </div>
+          </form>
+
+          <button ng-click="narrowCtrl.searchMenuItems()" >
+            Narrow It Down For Me!
+          </button>
+
+        </div>
+      </div>
+
+      <found-items
+        items="narrowCtrl.found"
+        on-remove="narrowCtrl.removeItem(index)">
+      </found-items>
     </div>
-
+  </div>
 </body>
-
 </html>
